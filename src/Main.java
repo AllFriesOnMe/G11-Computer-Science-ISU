@@ -647,7 +647,6 @@ public class Main {
 
     public static void main(String[] args) {
         while(true) {
-            System.out.println("Hello!");
             System.out.println("Pick from option 1, 2, or 3: \n1. Player vs Player\n2. Player vs Computer (Random)\n3. Player vs Computer (Never Loses)");
             int choice;
 
@@ -684,6 +683,8 @@ public class Main {
                 System.out.println("Thanks for playing!");
                 break;
             }
+
+            // print 10 lines to clear screen
 
             for(int i = 0; i < 10; i++) {
                 System.out.println();
