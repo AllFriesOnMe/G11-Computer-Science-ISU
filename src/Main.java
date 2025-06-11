@@ -342,13 +342,13 @@ public class Main {
     }
 
     public static int[] chooseNextMove(char[][] board) {
-        int[] nextMove = checkWinningMove(board, player1); // try to block winning move from player1
+        int[] nextMove = checkWinningMove(board, player2); // try to capitalize on winning move
 
         if(nextMove != null) {
             return nextMove;
         }
 
-        nextMove = checkWinningMove(board, player2); // try to capitalize on winning move
+        nextMove = checkWinningMove(board, player1); // try to block winning move from player 1
 
         if(nextMove != null) {
             return nextMove;
