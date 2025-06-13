@@ -614,7 +614,7 @@ public class Main {
 
     public static void main(String[] args) {
         while(true) {
-            System.out.println("Pick from option 1, 2, 3, or 4: \n1. Player vs Player\n2. Player vs Computer (Random)\n3. Player vs Computer (Never Loses)");
+            System.out.println("Pick from option 1, 2, or 3: \n1. Player vs Player\n2. Player vs Computer (Random)\n3. Player vs Computer (Never Loses)");
             int choice;
 
             // get user's choice - keep prompting until the user inputs a valid option
