@@ -104,8 +104,8 @@ public class Main {
         System.out.println(); // print a newline after for visual purposes
     }
 
-    public static int[] checkWinningMove(char[][] board, char targetPlayer) {
-        int[] next_move = new int[2];
+    public static int checkWinningMove(char[][] board, char targetPlayer) {
+        int next_move;
 
         // check horizontal 2 in a row with no pieces on either side
         for(int r = 0; r < 6; r++) {
@@ -113,19 +113,16 @@ public class Main {
                 if(board[r][c] == targetPlayer && board[r][c + 1] == targetPlayer && board[r][c - 1] == empty && board[r][c + 2] == empty) {
                     // if on bottom row - no need to check if a piece is below either empty piece
                     if(r == 5) {
-                        next_move[0] = r;
-                        next_move[1] = c - 1;
+                        next_move = c - 1;
                         return next_move;
                     }
                     // if not on bottom row - check if a piece is below either empty piece
                     else if(board[r + 1][c - 1] != empty) {
-                        next_move[0] = r;
-                        next_move[1] = c - 1;
+                        next_move = c - 1;
                         return next_move;
                     }
                     else if(board[r + 1][c + 2] != empty) {
-                        next_move[0] = r;
-                        next_move[1] = c + 2;
+                        next_move = c + 2;
                         return next_move;
                     }
                 }
@@ -138,15 +135,13 @@ public class Main {
                 if(board[r][c] == targetPlayer && board[r][c + 1] == targetPlayer && board[r][c + 2] == targetPlayer) {
                     // RS check
                     if(c < 4 && board[r][c + 3] == empty && (r == 5 || board[r + 1][c + 3] != empty)) {
-                        next_move[0] = r;
-                        next_move[1] = c + 3;
+                        next_move = c + 3;
                         return next_move;
                     }
 
                     // LS check
                     if(c - 1 >= 0 && board[r][c - 1] == empty && (r == 5 || board[r + 1][c - 1] != empty)) {
-                        next_move[0] = r;
-                        next_move[1] = c - 1;
+                        next_move = c - 1;
                         return next_move;
                     }
                 }
@@ -157,8 +152,7 @@ public class Main {
         for(int r = 1; r <= 3; r++) {
             for(int c = 0; c < 7; c++) {
                 if(board[r][c] == targetPlayer && board[r + 1][c] == targetPlayer && board[r + 2][c] == targetPlayer && board[r - 1][c] == empty) {
-                    next_move[0] = r - 1;
-                    next_move[1] = c;
+                    next_move = c;
                     return next_move;
                 }
             }
@@ -171,15 +165,13 @@ public class Main {
                 if(board[r][c] == targetPlayer && board[r + 1][c + 1] == targetPlayer && board[r + 2][c + 2] == targetPlayer) {
                     // RS check - considers if move is on bottom row or not
                     if(r <= 2 && c < 4 && board[r + 3][c + 3] == empty && (r == 2 || (c + 4 < 7 && board[r + 4][c + 4] != empty))) {
-                        next_move[0] = r + 3;
-                        next_move[1] = c + 3;
+                        next_move = c + 3;
                         return next_move;
                     }
 
                     // LS check
                     if(c > 0 && r > 0 && board[r - 1][c - 1] == empty && board[r][c - 1] != empty) {
-                        next_move[0] = r - 1;
-                        next_move[1] = c - 1;
+                        next_move = c - 1;
                         return next_move;
                     }
                 }
@@ -190,15 +182,13 @@ public class Main {
                 if(board[r][c] == targetPlayer && board[r + 1][c - 1] == targetPlayer && board[r + 2][c - 2] == targetPlayer) {
                     // RS check
                     if(r > 0 && c <= 5 && board[r - 1][c + 1] == empty && board[r][c + 1] != empty) {
-                        next_move[0] = r - 1;
-                        next_move[1] = c + 1;
+                        next_move = c + 1;
                         return next_move;
                     }
 
                     // LS check - considers if the move is on the bottom row or not
                     if(r < 3 && c >= 3 && board[r + 3][c - 3] == empty && (r == 2 || (board[r + 4][c - 3] != empty))) {
-                        next_move[0] = r + 3;
-                        next_move[1] = c - 3;
+                        next_move = c - 3;
                         return next_move;
                     }
                 }
@@ -211,15 +201,13 @@ public class Main {
                 if(board[r][c] == targetPlayer && board[r + 1][c + 1] == targetPlayer && board[r + 2][c + 2] == targetPlayer) {
                     // RS check - considers if move is on bottom row or not
                     if(r <= 2 && c < 4 && board[r + 3][c + 3] == empty && (r == 2 || (c + 4 < 7 && board[r + 4][c + 4] != empty))) {
-                        next_move[0] = r + 3;
-                        next_move[1] = c + 3;
+                        next_move = c + 3;
                         return next_move;
                     }
 
                     // LS check
                     if(c > 0 && r > 0 && board[r - 1][c - 1] == empty && board[r][c - 1] != empty) {
-                        next_move[0] = r - 1;
-                        next_move[1] = c - 1;
+                        next_move = c - 1;
                         return next_move;
                     }
                 }
@@ -230,27 +218,25 @@ public class Main {
                 if(board[r][c] == targetPlayer && board[r + 1][c - 1] == targetPlayer && board[r + 2][c - 2] == targetPlayer) {
                     // RS check
                     if(r > 0 && c <= 5 && board[r - 1][c + 1] == empty && board[r][c + 1] != empty) {
-                        next_move[0] = r - 1;
-                        next_move[1] = c + 1;
+                        next_move = c + 1;
                         return next_move;
                     }
 
                     // LS check - considers if the move is on the bottom row or not
                     if(r < 3 && c >= 3 && board[r + 3][c - 3] == empty && (r == 2 || board[r + 4][c - 3] != empty)) {
-                        next_move[0] = r + 3;
-                        next_move[1] = c - 3;
+                        next_move = c - 3;
                         return next_move;
                     }
                 }
             }
         }
 
-        return null; // no winning move has been found
+        return -1; // no winning move has been found
 
     }
 
-    public static int[] checkPotentialWinning(char[][] board, char targetPlayer) {
-        int[] next_move = new int[2];
+    public static int checkPotentialWinning(char[][] board, char targetPlayer) {
+        int next_move;
 
         // check diagonal 2 in a row
         for(int r = 0; r <= 4; r++) {
@@ -258,15 +244,13 @@ public class Main {
                 if(board[r][c] == targetPlayer && board[r + 1][c + 1] == targetPlayer) {
                     // RS check - considers if move is on bottom row or not
                     if(r <= 3 && c < 5 && board[r + 2][c + 2] == empty && (r == 3 || (c <= 3 && board[r + 3][c + 2] != empty))) {
-                        next_move[0] = r + 2;
-                        next_move[1] = c + 2;
+                        next_move = c + 2;
                         return next_move;
                     }
 
                     // LS check
                     if(c > 0 && r > 0 && board[r - 1][c - 1] == empty && board[r][c - 1] != empty) {
-                        next_move[0] = r - 1;
-                        next_move[1] = c - 1;
+                        next_move = c - 1;
                         return next_move;
                     }
                 }
@@ -277,15 +261,13 @@ public class Main {
                 if(board[r][c] == targetPlayer && board[r + 1][c - 1] == targetPlayer) {
                     // RS check
                     if(r > 0 && board[r - 1][c + 1] == empty && board[r][c + 1] != empty) {
-                        next_move[0] = r - 1;
-                        next_move[1] = c + 1;
+                        next_move = c + 1;
                         return next_move;
                     }
 
                     // LS check - considers if the move is on the bottom row or not
                     if(r < 4 && c >= 2 && board[r + 2][c - 2] == empty && (r == 3 || (c >= 3 && board[r + 3][c - 2] != empty))) {
-                        next_move[0] = r + 2;
-                        next_move[1] = c - 2;
+                        next_move = c - 2;
                         return next_move;
                     }
                 }
@@ -296,8 +278,7 @@ public class Main {
         for(int r = 1; r <= 4; r++) {
             for(int c = 0; c < 7; c++) {
                 if(board[r][c] == targetPlayer && board[r + 1][c] == targetPlayer && board[r - 1][c] == empty) {
-                    next_move[0] = r - 1;
-                    next_move[1] = c;
+                    next_move = c;
                     return next_move;
                 }
             }
@@ -309,13 +290,11 @@ public class Main {
             for(int c = 0; c < 4; c++) {
                 if(board[r][c] == targetPlayer && board[r][c + 1] == targetPlayer && board[r][c + 2] == empty && board[r][c + 3] == empty) {
                     if(r == 5 || board[r + 1][c + 1] != empty) {
-                        next_move[0] = r;
-                        next_move[1] = c + 1;
+                        next_move = c + 1;
                         return next_move;
                     }
                     if(board[r + 1][c + 2] != empty) {
-                        next_move[0] = r;
-                        next_move[1] = c + 2;
+                        next_move = c + 2;
                         return next_move;
                     }
 
@@ -326,49 +305,46 @@ public class Main {
             for(int c = 2; c < 6; c++) {
                 if(board[r][c] == targetPlayer && board[r][c + 1] == targetPlayer && board[r][c - 1] == empty && board[r][c - 2] == empty) {
                     if(r == 5 || board[r + 1][c - 1] != empty) {
-                        next_move[0] = r;
-                        next_move[1] = c - 1;
+                        next_move = c - 1;
                         return next_move;
                     }
                     if(board[r + 1][c - 2] != empty) {
-                        next_move[0] = r;
-                        next_move[1] = c - 2;
+                        next_move = c - 2;
                         return next_move;
                     }
                 }
             }
         }
 
-        return null;
+        return -1;
     }
 
-    public static int[] chooseNextMove(char[][] board) {
-        int[] nextMove = checkWinningMove(board, player2); // try to capitalize on winning move
+    public static int chooseNextMove(char[][] board) {
+        int nextMove = checkWinningMove(board, player2); // try to capitalize on winning move
 
-        if(nextMove != null) {
+        if(nextMove != -1) {
             return nextMove;
         }
 
         nextMove = checkWinningMove(board, player1); // try to block winning move from player 1
 
-        if(nextMove != null) {
+        if(nextMove != -1) {
             return nextMove;
         }
 
         nextMove = checkPotentialWinning(board, player1); // check 2 in a row - defensive
 
-        if(nextMove != null) {
+        if(nextMove != -1) {
             return nextMove;
         }
 
         nextMove = checkPotentialWinning(board, player2); // check 2 in a row - offensive
 
-        if(nextMove != null) {
+        if(nextMove != -1) {
             return nextMove;
         }
 
         // no winning/promising move found - place piece at the most center column
-        nextMove = new int[2];
 
         boolean leftValid;
         boolean rightValid;
@@ -379,15 +355,13 @@ public class Main {
 
             leftValid = checkValidMove(board, leftCenter + 1); // check if column is full
             if(leftValid) {
-                nextMove[0] = 5 - columns[leftCenter];
-                nextMove[1] = leftCenter;
+                nextMove = leftCenter;
                 break;
             }
 
             rightValid = checkValidMove(board, rightCenter + 1);
             if(rightValid) {
-                nextMove[0] = 5 - columns[rightCenter];
-                nextMove[1] = rightCenter;
+                nextMove = rightCenter;
                 break;
             }
         }
@@ -608,12 +582,12 @@ public class Main {
 
             // computer chooses next move
 
-            int[] nextMove = chooseNextMove(board);
+            int nextMove = chooseNextMove(board);
 
             playerOneTurn = false;
-            place(board, nextMove[1] + 1, playerOneTurn);
+            place(board, nextMove + 1, playerOneTurn);
 
-            System.out.println("The computer placed their piece in column " + (nextMove[1] + 1) + ".");
+            System.out.println("The computer placed their piece in column " + (nextMove + 1) + ".");
 
             printBoard(board);
 
