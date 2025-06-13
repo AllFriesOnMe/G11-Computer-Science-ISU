@@ -129,6 +129,22 @@ public class Main {
             }
         }
 
+        // check for alternating . X . X or X . X .
+        for(int r = 0; r < 6; r++) {
+            for(int c = 0; c < 4; c++) {
+                // . X . X
+                if(board[r][c] == empty && board[r][c + 2] == empty && board[r][c + 1] == targetPlayer && board[r][c + 3] == targetPlayer && (r == 5 || board[r + 1][c + 2] != empty)) {
+                    next_move = c + 2;
+                    return next_move;
+                }
+                // X . X .
+                if(board[r][c] == targetPlayer && board[r][c + 2] == targetPlayer && board[r][c + 1] == empty && board[r][c + 3] == empty && (r == 5 || board[r + 1][c + 1] != empty)) {
+                    next_move = c + 1;
+                    return next_move;
+                }
+            }
+        }
+
         // check horizontal 3 in a row
         for(int r = 0; r < 6; r++) {
             for(int c = 0; c < 5; c++) {
