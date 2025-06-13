@@ -25,6 +25,12 @@ public class Main {
         return board;
     }
 
+    public static char[][] pseudoPlace(char[][] newBoard, int move) {
+        newBoard[5 - columns[move - 1]][move - 1] = player2;
+
+        return newBoard;
+    }
+
     public static boolean checkValidMove(char[][] board, int move) {
         if(move < 1 || move > 7) { // move must be within column 1, 2, 3, 4, 5, 6, or 7
             return false;
@@ -104,8 +110,8 @@ public class Main {
         System.out.println(); // print a newline after for visual purposes
     }
 
-    public static boolean avoidLosingPosition(char[][] predictedBoard, int next_move) {
-        predictedBoard = place(predictedBoard, next_move + 1, false);
+    public static boolean avoidLosingPosition(char[][] currBoard, int next_move) {
+        char [][] predictedBoard = pseudoPlace(currBoard, next_move + 1);
         if(checkWinningMove(predictedBoard, player1) != -1) {
             return false; // going to lose
         }
@@ -270,6 +276,7 @@ public class Main {
 
     public static int checkPotentialWinning(char[][] board, char targetPlayer) {
         int next_move;
+        char[][] newBoard = board;
 
         // check diagonal 2 in a row
         for(int r = 0; r <= 4; r++) {
@@ -278,7 +285,7 @@ public class Main {
                     // RS check - considers if move is on bottom row or not
                     if(r <= 3 && c < 5 && board[r + 2][c + 2] == empty && (r == 3 || (c <= 3 && board[r + 3][c + 2] != empty))) {
                         next_move = c + 2;
-                        if(avoidLosingPosition(board, next_move)) {
+                        if(avoidLosingPosition(newBoard, next_move)) {
                             return next_move;
                         }
                     }
@@ -286,7 +293,7 @@ public class Main {
                     // LS check
                     if(c > 0 && r > 0 && board[r - 1][c - 1] == empty && board[r][c - 1] != empty) {
                         next_move = c - 1;
-                        if(avoidLosingPosition(board, next_move)) {
+                        if(avoidLosingPosition(newBoard, next_move)) {
                             return next_move;
                         }
                     }
@@ -299,7 +306,7 @@ public class Main {
                     // RS check
                     if(r > 0 && board[r - 1][c + 1] == empty && board[r][c + 1] != empty) {
                         next_move = c + 1;
-                        if(avoidLosingPosition(board, next_move)) {
+                        if(avoidLosingPosition(newBoard, next_move)) {
                             return next_move;
                         }
                     }
@@ -307,7 +314,7 @@ public class Main {
                     // LS check - considers if the move is on the bottom row or not
                     if(r < 4 && c >= 2 && board[r + 2][c - 2] == empty && (r == 3 || (c >= 3 && board[r + 3][c - 2] != empty))) {
                         next_move = c - 2;
-                        if(avoidLosingPosition(board, next_move)) {
+                        if(avoidLosingPosition(newBoard, next_move)) {
                             return next_move;
                         }
                     }
@@ -320,7 +327,7 @@ public class Main {
             for(int c = 0; c < 7; c++) {
                 if(board[r][c] == targetPlayer && board[r + 1][c] == targetPlayer && board[r - 1][c] == empty) {
                     next_move = c;
-                    if(avoidLosingPosition(board, next_move)) {
+                    if(avoidLosingPosition(newBoard, next_move)) {
                         return next_move;
                     }
                 }
@@ -334,13 +341,13 @@ public class Main {
                 if(board[r][c] == targetPlayer && board[r][c + 1] == targetPlayer && board[r][c + 2] == empty && board[r][c + 3] == empty) {
                     if(r == 5 || board[r + 1][c + 1] != empty) {
                         next_move = c + 1;
-                        if(avoidLosingPosition(board, next_move)) {
+                        if(avoidLosingPosition(newBoard, next_move)) {
                             return next_move;
                         }
                     }
                     if(board[r + 1][c + 2] != empty) {
                         next_move = c + 2;
-                        if(avoidLosingPosition(board, next_move)) {
+                        if(avoidLosingPosition(newBoard, next_move)) {
                             return next_move;
                         }
                     }
@@ -353,13 +360,13 @@ public class Main {
                 if(board[r][c] == targetPlayer && board[r][c + 1] == targetPlayer && board[r][c - 1] == empty && board[r][c - 2] == empty) {
                     if(r == 5 || board[r + 1][c - 1] != empty) {
                         next_move = c - 1;
-                        if(avoidLosingPosition(board, next_move)) {
+                        if(avoidLosingPosition(newBoard, next_move)) {
                             return next_move;
                         }
                     }
                     if(board[r + 1][c - 2] != empty) {
                         next_move = c - 2;
-                        if(avoidLosingPosition(board, next_move)) {
+                        if(avoidLosingPosition(newBoard, next_move)) {
                             return next_move;
                         }
                     }
