@@ -105,7 +105,7 @@ public class Main {
     }
 
     public static boolean avoidLosingPosition(char[][] predictedBoard, int next_move) {
-        predictedBoard = place(predictedBoard, next_move, false);
+        predictedBoard = place(predictedBoard, next_move + 1, false);
         if(checkWinningMove(predictedBoard, player1) != -1) {
             return false; // going to lose
         }
