@@ -10,6 +10,7 @@ public class Main {
     public static char player2 = 'O';
     public static char empty = '.';
     public static int[] columns = {0, 0, 0, 0, 0, 0, 0};
+    public static char[][] board = {{empty, empty, empty, empty, empty, empty, empty}, {empty, empty, empty, empty, empty, empty, empty}, {empty, empty, empty, empty, empty, empty, empty}, {empty, empty, empty, empty, empty, empty, empty}, {empty, empty, empty, empty, empty, empty, empty}, {empty, empty, empty, empty, empty, empty, empty}};
 
     public static char[][] place(char[][] board, int move, boolean playerOneTurn) {
         if(playerOneTurn) {
@@ -395,9 +396,6 @@ public class Main {
     }
 
     public static void PvP() {
-        // initialize board
-        char[][] board = {{empty, empty, empty, empty, empty, empty, empty}, {empty, empty, empty, empty, empty, empty, empty}, {empty, empty, empty, empty, empty, empty, empty}, {empty, empty, empty, empty, empty, empty, empty}, {empty, empty, empty, empty, empty, empty, empty}, {empty, empty, empty, empty, empty, empty, empty}};
-
         printBoard(board);
 
         while(true) {
@@ -488,8 +486,6 @@ public class Main {
     }
 
     public static void randomPvC() {
-        char[][] board = {{empty, empty, empty, empty, empty, empty, empty}, {empty, empty, empty, empty, empty, empty, empty}, {empty, empty, empty, empty, empty, empty, empty}, {empty, empty, empty, empty, empty, empty, empty}, {empty, empty, empty, empty, empty, empty, empty}, {empty, empty, empty, empty, empty, empty, empty}};
-
         printBoard(board);
 
         while(true) {
@@ -577,8 +573,6 @@ public class Main {
     }
 
     public static void impossiblePvC() {
-        char[][] board = {{empty, empty, empty, empty, empty, empty, empty}, {empty, empty, empty, empty, empty, empty, empty}, {empty, empty, empty, empty, empty, empty, empty}, {empty, empty, empty, empty, empty, empty, empty}, {empty, empty, empty, empty, empty, empty, empty}, {empty, empty, empty, empty, empty, empty, empty}};
-
         printBoard(board);
 
         while(true) {
@@ -694,6 +688,9 @@ public class Main {
             for(int i = 0; i < 7; i++) {
                 columns[i] = 0;
             }
+
+            // reset board
+            char[][] board = {{empty, empty, empty, empty, empty, empty, empty}, {empty, empty, empty, empty, empty, empty, empty}, {empty, empty, empty, empty, empty, empty, empty}, {empty, empty, empty, empty, empty, empty, empty}, {empty, empty, empty, empty, empty, empty, empty}, {empty, empty, empty, empty, empty, empty, empty}};
 
         }
     }
