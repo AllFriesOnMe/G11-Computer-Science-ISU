@@ -170,7 +170,7 @@ public class Main {
                 // top left -> bottom right
                 if(board[r][c] == targetPlayer && board[r + 1][c + 1] == targetPlayer && board[r + 2][c + 2] == targetPlayer) {
                     // RS check - considers if move is on bottom row or not
-                    if(r <= 2 && c < 4 && board[r + 3][c + 3] == empty && (r == 2 || (r + 4 < 6 && c + 4 < 7 && board[r + 4][c + 4] != empty))) {
+                    if(r <= 2 && c < 4 && board[r + 3][c + 3] == empty && (r == 2 || (c + 4 < 7 && board[r + 4][c + 4] != empty))) {
                         next_move[0] = r + 3;
                         next_move[1] = c + 3;
                         return next_move;
@@ -196,7 +196,7 @@ public class Main {
                     }
 
                     // LS check - considers if the move is on the bottom row or not
-                    if(r < 3 && c >= 3 && board[r + 3][c - 3] == empty && (r == 2 || (r <= 1 && board[r + 4][c - 3] != empty))) {
+                    if(r < 3 && c >= 3 && board[r + 3][c - 3] == empty && (r == 2 || (board[r + 4][c - 3] != empty))) {
                         next_move[0] = r + 3;
                         next_move[1] = c - 3;
                         return next_move;
