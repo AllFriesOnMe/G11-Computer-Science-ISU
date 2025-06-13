@@ -340,13 +340,14 @@ public class Main {
             for(int c = 0; c < 4; c++) {
                 if(board[r][c] == targetPlayer && board[r][c + 1] == targetPlayer && board[r][c + 2] == empty && board[r][c + 3] == empty) {
                     if(r == 5 || board[r + 1][c + 1] != empty) {
-                        next_move = c + 1;
+                        next_move = c + 2;
+                        System.out.println(next_move);
                         if(avoidLosingPosition(newBoard, next_move)) {
                             return next_move;
                         }
                     }
                     if(board[r + 1][c + 2] != empty) {
-                        next_move = c + 2;
+                        next_move = c + 3;
                         if(avoidLosingPosition(newBoard, next_move)) {
                             return next_move;
                         }
