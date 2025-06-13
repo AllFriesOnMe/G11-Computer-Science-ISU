@@ -26,7 +26,7 @@ public class Main {
     }
 
     public static char[][] pseudoPlace(char[][] newBoard, int move) {
-        newBoard[5 - columns[move - 1]][move - 1] = player2;
+        newBoard[5 - columns[move]][move] = player2;
 
         return newBoard;
     }
@@ -111,7 +111,7 @@ public class Main {
     }
 
     public static boolean avoidLosingPosition(char[][] currBoard, int next_move) {
-        char [][] predictedBoard = pseudoPlace(currBoard, next_move + 1);
+        char[][] predictedBoard = pseudoPlace(currBoard, next_move);
         if(checkWinningMove(predictedBoard, player1) != -1) {
             return false; // going to lose
         }
