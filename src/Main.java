@@ -407,7 +407,7 @@ public class Main {
 
             // get user input + check validity
 
-            System.out.println("Player 1 move: ");
+            System.out.println("Player 1 " + "(" + player1 + ")" + " move: ");
             playerOneTurn = true;
             playerOneMove = sc.nextInt();
 
@@ -447,7 +447,7 @@ public class Main {
 
             // repeat process for player 2
 
-            System.out.println("Player 2 move: ");
+            System.out.println("Player 2 " + "(" + player2 + ")" + " move: ");
             playerOneTurn = false;
             playerTwoMove = sc.nextInt();
 
@@ -497,7 +497,7 @@ public class Main {
 
             // same user input + checking process as before
 
-            System.out.println("Player 1 move: ");
+            System.out.println("Player 1 " + "(" + player1 + ")" + " move: ");
             playerOneTurn = true;
             playerOneMove = sc.nextInt();
 
@@ -582,7 +582,7 @@ public class Main {
             boolean win;
             boolean isDraw;
 
-            System.out.println("Player 1 move: ");
+            System.out.println("Player 1 " + "(" + player1 + ")" + " move: ");
             playerOneTurn = true;
             playerOneMove = sc.nextInt();
 
@@ -610,9 +610,8 @@ public class Main {
 
             int[] nextMove = chooseNextMove(board);
 
-            board[nextMove[0]][nextMove[1]] = player2;
-
-            columns[nextMove[1]] += 1;
+            playerOneTurn = false;
+            place(board, nextMove[1] + 1, playerOneTurn);
 
             System.out.println("The computer placed their piece in column " + (nextMove[1] + 1) + ".");
 
@@ -641,7 +640,7 @@ public class Main {
 
     public static void main(String[] args) {
         while(true) {
-            System.out.println("Pick from option 1, 2, or 3: \n1. Player vs Player\n2. Player vs Computer (Random)\n3. Player vs Computer (Never Loses)");
+            System.out.println("Pick from option 1, 2, 3, or 4: \n1. Player vs Player\n2. Player vs Computer (Random)\n3. Player vs Computer (Never Loses)");
             int choice;
 
             // get user's choice - keep prompting until the user inputs a valid option
