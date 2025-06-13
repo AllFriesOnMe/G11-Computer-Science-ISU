@@ -654,14 +654,16 @@ public class Main {
                 System.out.println("Invalid input! Enter 1, 2, or 3: ");
             }
 
-            if(choice == 1) {
-                PvP();
-            }
-            else if(choice == 2) {
-                randomPvC();
-            }
-            else {
-                impossiblePvC();
+            switch(choice) {
+                case 1:
+                    PvP();
+                    break;
+                case 2:
+                    randomPvC();
+                    break;
+                case 3:
+                    impossiblePvC();
+                    break;
             }
 
             System.out.println("Would you like to play again? (Y/N)");
